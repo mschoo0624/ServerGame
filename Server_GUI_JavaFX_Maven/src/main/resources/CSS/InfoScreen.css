@@ -1,0 +1,58 @@
+/* Root background styling */
+.root1 {
+    -fx-background-image: url('/Images/infoscreen.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: cover;
+    -fx-font: 14px "Comic Sans MS", cursive;
+}
+
+/* Label Styling */
+.label-general {
+    -fx-background-color: rgba(255, 235, 205, 0.2);
+    -fx-text-fill: #FAF3E0;
+    -fx-font-size: 18px;
+    -fx-padding: 15px 30px;
+    -fx-background-radius: 20px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0.3, 0, 3);
+    -fx-alignment: center; /* Ensures centered text */
+}
+
+/* Hover Effect for the Label */
+.label-general:hover {
+    -fx-background-color: rgba(255, 248, 220, 0.4); /* Lighter beige on hover */
+    -fx-text-fill: #FFF8DC; /* Slightly brighter text */
+}
+
+
+/* ListView styling */
+.list-view {
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-border-color: #ffd700;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-cell-size: 40px;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+/* Close Button styling */
+#exitButton {
+    -fx-background-color: #FF5C5C;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 2);
+}
+
+#exitButton:pressed {
+    -fx-background-color: #FF3333; /* Darker red when pressed */
+    -fx-translate-y: 2px;          /* Simulates press */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1);
+}
