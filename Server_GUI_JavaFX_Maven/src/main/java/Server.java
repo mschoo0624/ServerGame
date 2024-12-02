@@ -54,9 +54,20 @@ public class Server {
         ObjectInputStream in;
         ObjectOutputStream out;
 
+        // Game state variables
+        Deck deck;
+        ArrayList<Card> playerHand;
+        ArrayList<Card> dealerHand;
+        double anteBet;
+        double pairPlusBet;
+        double totalWinnings;
+
         ClientThread(Socket s, int count){
             this.connection = s;
             this.count = count;
+
+            this.deck = new Deck(); // Initialize a new deck for this client
+            this.totalWinnings = 0;
         }
 
         public void run() {
