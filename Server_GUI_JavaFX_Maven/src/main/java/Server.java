@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 public class Server {
     int count = 1;
-    ArrayList<ClientThread> clients = new ArrayList<ClientThread>();
+    final ArrayList<ClientThread> clients = new ArrayList<ClientThread>();
     TheServer server;
     private static Consumer<Serializable> callback;
 
@@ -27,16 +27,12 @@ public class Server {
             try(ServerSocket mysocket = new ServerSocket(portNum);){
                 System.out.println("Server is waiting for a client!");
 
-
                 while(true) {
-
                     ClientThread c = new ClientThread(mysocket.accept(), count);
                     callback.accept("client has connected to server: " + "client #" + count);
                     clients.add(c);
                     c.start();
-
                     count++;
-
                 }
             }//end of try
             catch(Exception e) {
@@ -62,8 +58,27 @@ public class Server {
             this.connection = s;
             this.count = count;
         }
-        public void run() {}
 
+        public void run() {
+            try {
+                in = new ObjectInputStream(connection.getInputStream());
+                out = new ObjectOutputStream(connection.getOutputStream());
+                connection.setTcpNoDelay(true);
+            } catch (Exception e) {
+                System.out.println("Streams not open");
+            }
+            while (true){
+                try {
+                    String data = in.readObject().toString();
+                    callback.accept("client: " + count + " sent: " + data);
+                } catch (Exception e){
+                    callback.accept("Something wrong with the socket from client: " + count + " closing down!");
+                    synchronized (clients) {
+                        clients.remove(this);
+                    }
+                    break;
+                }
+            }
+        }
     }
-
 }
