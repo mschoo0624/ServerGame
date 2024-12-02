@@ -2,31 +2,35 @@ import java.io.Serializable;
 import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
 
 public class Server {
-    private int count = 1;
+    int count = 1;
     ArrayList<ClientThread> clients = new ArrayList<ClientThread>();
-    static TheServer server;
+    TheServer server;
     private Consumer<Serializable> callback;
 
     public Server(Consumer<Serializable> call) {
         callback = call;
         server = new TheServer();
-//        server.start();
+        server.start();
     }
 
     //Listening Server
-    public static class TheServer extends Thread {
-        private int portNum;//The port the server listens from
+    public class TheServer extends Thread {
+        private int portNum; //The port the server listens from
 
         public void run() {
-            try (ServerSocket serverSocket = new ServerSocket(PortNum)){
+            try (ServerSocket serverSocket = new ServerSocket(portNum)){
                 callback.accept("Server started on port: " + portNum);
 
                 while (true){
                     Socket ClientSocket = serverSocket.accept();
                     ClientThread clientThread = new ClientThread(clientSocket, count);
-                    clients.add(clientThread);
+                    synchronized (this) { clients.add(clientThread); }
                     clientThread.start();
                     callback.accept("Client #" + count + " connected.");
                     count++;
