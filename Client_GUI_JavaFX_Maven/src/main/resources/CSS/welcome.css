@@ -1,0 +1,50 @@
+.root{
+    -fx-font: 14px "Comic Sans MS", cursive;
+}
+.vbox{
+    -fx-background-color: teal;
+    -fx-padding: 20px; /* Adds padding inside the vbox */
+    -fx-spacing: 30px; /* Adds spacing between elements */
+}
+.Label{
+    -fx-text-fill: black;
+    -fx-font-size: 40px; /* Set a larger font size */
+    -fx-font-weight: bold; /* Make text bold */
+    -fx-font-scale: 1.2;
+}
+#rulesButton {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 2)
+}
+
+#gameButton {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 2)
+}
+
+#exitButton {
+    -fx-background-color: #FF5C5C;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 2);
+}
+
+/* Pressed button styles */
+#rulesButton:pressed, #gameButton:pressed, #exitButton:pressed {
+    -fx-background-color: darkgray; /* Darken background on press */
+    -fx-translate-y: 2px;           /* Moves the button down to simulate a press */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1);
+}

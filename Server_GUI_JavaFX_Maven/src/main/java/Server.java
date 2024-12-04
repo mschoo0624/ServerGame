@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -24,15 +25,24 @@ public class Server {
         private int portNum;//The port the server listens from
 
         public void run() {
-            try(ServerSocket mysocket = new ServerSocket(portNum);){
-                System.out.println("Server is waiting for a client!");
+            portNum = 5555;
+            try(ServerSocket mysocket = new ServerSocket(5555)){
+                System.out.println("Listening on port " + portNum);
+                callback.accept("Server is waiting for a client!");
 
-                while(true) {
-                    ClientThread c = new ClientThread(mysocket.accept(), count);
-                    callback.accept("client has connected to server: " + "client #" + count);
-                    clients.add(c);
-                    c.start();
-                    count++;
+                while(true){
+                    try {
+                        ClientThread c = new ClientThread(mysocket.accept(), count);
+                        callback.accept("client has connected to server: " + "client #" + count);
+                        synchronized (clients) { // Synchronize addition to the list
+                            clients.add(c);
+                        }
+                        c.start();
+                        count++;
+                    }
+                    catch(Exception e) {
+                        callback.accept("Error accepting a client connection");
+                    }
                 }
             }//end of try
             catch(Exception e) {
@@ -54,20 +64,32 @@ public class Server {
         ObjectInputStream in;
         ObjectOutputStream out;
 
-        // Game state variables
-        Deck deck;
-        ArrayList<Card> playerHand;
-        ArrayList<Card> dealerHand;
-        double anteBet;
-        double pairPlusBet;
-        double totalWinnings;
+//        // Game state variables
+//        Deck deck;
+//        ArrayList<Card> playerHand;
+//        ArrayList<Card> dealerHand;
+//        double anteBet;
+//        double pairPlusBet;
+//        double totalWinnings;
 
         ClientThread(Socket s, int count){
             this.connection = s;
             this.count = count;
 
-            this.deck = new Deck(); // Initialize a new deck for this client
-            this.totalWinnings = 0;
+//            this.deck = new Deck(); // Initialize a new deck for this client
+//            this.totalWinnings = 0;
+        }
+
+        public void updateClients(String message) {
+            synchronized (clients) { // Synchronize during iteration
+                for (ClientThread t : clients) {
+                    try {
+                        t.out.writeObject(message);
+                    } catch (Exception e) {
+                        callback.accept("Update client failed");
+                    }
+                }
+            }
         }
 
         public void run() {
@@ -78,12 +100,16 @@ public class Server {
             } catch (Exception e) {
                 System.out.println("Streams not open");
             }
+
+            //Update client
+            updateClients("new client on server: client #"+count);
+
             while (true){
                 try {
                     String data = in.readObject().toString();
-                    callback.accept("client: " + count + " sent: " + data);
+                    callback.accept("client" + count + data);
                 } catch (Exception e){
-                    callback.accept("Something wrong with the socket from client: " + count + " closing down!");
+                    callback.accept("Client" + count + " has Shut Down");
                     synchronized (clients) {
                         clients.remove(this);
                     }

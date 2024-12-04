@@ -18,7 +18,7 @@
 
     <!-- ListView in the center -->
     <center>
-        <ListView fx:id="listView" minWidth="450" minHeight="490">
+        <ListView fx:id="serverListView" minWidth="450" minHeight="490">
             <BorderPane.margin>
                 <Insets top="10" left="20" right="20" bottom="20" />
             </BorderPane.margin>

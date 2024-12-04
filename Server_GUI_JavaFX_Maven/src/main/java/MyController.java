@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +19,8 @@ import java.util.Objects;
 import java.io.IOException;
 
 public class MyController implements Initializable {
+
+
     @FXML
     private AnchorPane root;
     @FXML
@@ -26,6 +29,11 @@ public class MyController implements Initializable {
     private TextField portTextField;
     @FXML
     private Label serverStat;
+    @FXML
+    private ListView<String> serverListView;
+
+    Server serverConnection;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {}
@@ -39,6 +47,13 @@ public class MyController implements Initializable {
             Parent root3 = fxmlLoader.load();
             root3.getStylesheets().add("/CSS/InfoScreen.css");
             root.getScene().setRoot(root3);
+            MyController controller = fxmlLoader.getController();
+
+            serverConnection = new Server(data -> {
+                Platform.runLater(()->{
+                    controller.serverListView.getItems().add(data.toString());
+                });
+            });
         }
     }
 
@@ -62,16 +77,22 @@ public class MyController implements Initializable {
             if (port < 1 || port > 65535) { throw new IllegalArgumentException("ERROR!!! Port number must be between 1 and 65535"); }
             return true;// If everything is valid
 
-        } catch (Exception e) { // Catch all exceptions
-            serverStat.setText(e.getMessage() != null ? e.getMessage() : "ERROR!!! Please enter a valid port number");
+        }
+        catch (NumberFormatException e){
+            serverStat.setText(e.getMessage() != null ? e.getMessage() : "ERROR!!! PortNumber must be an integer between 1 and 65535");
+            portTextField.clear();
+            portTextField.setPromptText("Enter valid port number");
+            return false;
+        }
+        catch (Exception e) { // Catch all exceptions
+            serverStat.setText(e.getMessage() != null ? e.getMessage() : "ERROR!!! Please enter a valid port number between 1 and 65535");
             portTextField.clear();
             portTextField.setPromptText("Enter valid port number");
             return false;
         }
     }
 
-//    public void setPort(){
-//        Server.server.setPortNum(Integer.parseInt(portTextField.getText()));
-//        System.out.println(Server.server.getPortNum());
-//    }
+    public void setPort(){
+        //Set the port number
+    }
 }

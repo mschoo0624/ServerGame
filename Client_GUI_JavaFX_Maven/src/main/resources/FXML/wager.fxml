@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="MyController"
+            fx:id="wagerRoot" styleClass="wagerRoot"
+            prefHeight="500" prefWidth="500">
+
+    <VBox alignment="CENTER" spacing="40" prefWidth="500" prefHeight="500" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <!-- Title Label -->
+        <Label fx:id="playersName" styleClass="title-label"/>
+
+        <!-- Wager Labels -->
+        <VBox alignment="CENTER" spacing="20">
+            <Label fx:id="anteWagerInfo" styleClass="wager-label"/>
+            <Label fx:id="playWagerInfo" styleClass="wager-label"/>
+            <Label fx:id="pairPlusWagerInfo" styleClass="wager-label"/>
+        </VBox>
+
+        <!-- Back Button -->
+        <Button text="Back" fx:id="backButton" styleClass="back-button" onAction="#backToGame"/>
+    </VBox>
+</AnchorPane>

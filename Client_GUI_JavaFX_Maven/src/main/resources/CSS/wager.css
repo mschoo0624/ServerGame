@@ -1,0 +1,65 @@
+
+.wagerRoot {
+    -fx-background-color: linear-gradient(to bottom, #2B3A32, #1E2C24); /* Dark forest green gradient */
+    -fx-padding: 20px;
+    -fx-font: 15px "Georgia", serif;
+}
+
+.winRoot {
+    -fx-background-color: linear-gradient(to bottom, #2B3A32, #1E2C24); /* Dark forest green gradient */
+    -fx-padding: 20px;
+    -fx-font: 15px "Georgia", serif;
+}
+.title-label {
+    -fx-background-color: #436956; /* Soft green */
+    -fx-text-fill: #F0F4F2; /* Light grayish-white */
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 24px;
+    -fx-background-radius: 15px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0.4, 0, 3);
+}
+
+.wager-label {
+    -fx-background-color: #E8D8B8; /* Warm beige */
+    -fx-text-fill: #2B3A32; /* Dark green */
+    -fx-font-size: 18px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 12px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 3, 0.3, 0, 1);
+}
+
+.back-button {
+    -fx-background-color: #3C6E57; /* Rich green */
+    -fx-text-fill: #F1F8F5; /* Soft mint white */
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0.5, 0, 3);
+}
+
+.back-button:hover {
+    -fx-background-color: #4A8A66; /* Brighter green */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 8, 0.6, 0, 4);
+}
+
+
+.back-button:pressed {
+    -fx-background-color: #36614D; /* Darker green when pressed */
+    -fx-translate-y: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1);
+}
+
+.wager-input {
+    -fx-background-color: #E8E4D9; /* Light beige */
+    -fx-border-color: #436956; /* Soft green border */
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2B3A32; /* Dark green text */
+    -fx-padding: 6px;
+}
