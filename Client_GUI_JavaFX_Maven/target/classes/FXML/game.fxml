@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="MyController"
+            fx:id="root3" styleClass="anchor">
+
+<!--     Menu Button at the top-left corner-->
+    <MenuBar fx:id="menuBar" styleClass="menu-bar"
+                AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10">
+           <Menu fx:id="menu1" text="Menu">
+               <MenuItem fx:id="newLookMenuItem" text="New Look" onAction="#newLookMenu" />
+               <MenuItem fx:id="freshStartMenuItem" text="Fresh Start" onAction="#freshStartMenu" />
+               <MenuItem fx:id="exitMenuItem" text="Exit" onAction="#exitMenu" />
+           </Menu>
+    </MenuBar>
+
+
+    <!-- Dealer's Hand Section at the top-center, resizes horizontally -->
+    <VBox alignment="CENTER" spacing="10" AnchorPane.topAnchor="50" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <Label text="Dealer's Hand" styleClass="label-general"/>
+    </VBox>
+
+    <HBox fx:id="dealerCardBox" spacing="50" alignment="CENTER" AnchorPane.topAnchor="130"
+          AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <!-- Display Dealer Card -->
+        <ImageView fx:id="dealerCard1" fitWidth="150" fitHeight="200"/>
+        <ImageView fx:id="dealerCard2" fitWidth="150" fitHeight="200"/>
+        <ImageView fx:id="dealerCard3" fitWidth="150" fitHeight="200"/>
+    </HBox>
+
+    <!-- Player Sections at the center, resizes horizontally -->
+    <HBox spacing="250" alignment="CENTER" AnchorPane.topAnchor="380" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+
+        <!-- Player 1 Section -->
+        <VBox alignment="CENTER" spacing="25">
+            <Label text="Player 1 Cards" styleClass="label-general"/>
+            <!-- Display Player1 Card -->
+            <HBox fx:id="player1CardBox" spacing="50" alignment="CENTER" AnchorPane.topAnchor="400"
+                  AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+                <ImageView fx:id="player1Card1" fitWidth="150" fitHeight="200"/>
+                <ImageView fx:id="player1Card2" fitWidth="150" fitHeight="200"/>
+                <ImageView fx:id="player1Card3" fitWidth="150" fitHeight="200"/>
+            </HBox>
+
+            <!-- Player 1 Actions -->
+            <HBox spacing="45" alignment="CENTER">
+                <Button text="Deal" styleClass="action-button" fx:id="dealButton" onAction="#handleDeal1"/>
+                <Button text="Fold" styleClass="action-button" fx:id="foldButton" onAction="#handleFold1"/>
+                <Button text="Bet" styleClass="action-button" fx:id="betButton" onAction="#handleSubmitBet"/>
+                <Button text="Wager" styleClass="action-button" fx:id="wagerButton" onAction="#handleWager1"/>
+                <Button text="Winning Stats" styleClass="action-button" fx:id="statsButton" onAction="#handleStats1"/>
+            </HBox>
+
+            <!-- Player 1 Stats -->
+            <VBox spacing="15" alignment="CENTER">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Ante Wager    " styleClass="wager-label"/>
+                    <TextField fx:id="anteBet1" styleClass="wager-input" promptText="Enter amount 5$ - 25$"/>
+                </HBox>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Pair Plus Wager" styleClass="wager-label"/>
+                    <TextField fx:id="ppBet1" styleClass="wager-input" promptText="Enter amount 5$ - 25$"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </HBox>
+    <!-- Game Information Section anchored to the bottom with extended width -->
+    <HBox alignment="CENTER" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <Label fx:id="gameInfoLabel" styleClass="info-section"/>
+    </HBox>
+
+</AnchorPane>

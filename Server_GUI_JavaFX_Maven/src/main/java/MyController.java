@@ -81,8 +81,8 @@ public class MyController implements Initializable {
         }
     }
 
-//    public void setPort(){
-//        Server.server.setPortNum(Integer.parseInt(portTextField.getText()));
-//        System.out.println(Server.server.getPortNum());
-//    }
+    public void setPort(){
+        Server.server.setPortNum(Integer.parseInt(portTextField.getText()));
+        System.out.println(Server.server.getPortNum());
+    }
 }

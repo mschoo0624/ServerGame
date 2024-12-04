@@ -1,0 +1,104 @@
+/* Root Background with a Soft Olive Tone */
+.root3 {
+    -fx-background-color: linear-gradient(to bottom right, #4B5320, #7B8D42); /* Olive green gradient */
+    -fx-font: 15px "Georgia", serif;
+    -fx-padding: 20px;
+}
+
+/* Anchor Background with a Subtle Dark Brown */
+.anchor {
+    -fx-background-color: #3B3A30; /* Dark brown */
+}
+
+/* Label Styling with Soft Background and Bright Text */
+.label-general {
+    -fx-background-color: rgba(255, 235, 205, 0.2); /* More prominent warm beige */
+    -fx-text-fill: #FAF3E0; /* Light sand color */
+    -fx-font-size: 20px;
+    -fx-padding: 12px 24px;
+    -fx-background-radius: 15px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0.3, 0, 3);
+    -fx-alignment: center;
+}
+
+/* Hover Effect for Labels */
+.label-general:hover {
+    -fx-background-color: rgba(255, 248, 220, 0.4); /* Lighter beige background */
+    -fx-text-fill: #FFF8DC; /* Slightly brighter text */
+}
+
+/* Modern Menu Bar with Warm Brown Gradient */
+.menu-bar {
+    -fx-background-color: linear-gradient(to bottom, #D2B48C, #B8860B); /* Tan to golden brown */
+    -fx-text-fill: #4E342E; /* Rich brown text */
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-padding: 10px 18px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 5);
+}
+
+/* Hover Effect for Menu Bar */
+.menu-bar:hover {
+    -fx-background-color: linear-gradient(to bottom, #DECBA4, #B8860B); /* Slightly lighter tan-to-gold */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0, 5); /* Enhance shadow on hover */
+}
+
+/* Wager Input Fields with Light Beige Background */
+.wager-input {
+    -fx-font-size: 14px;
+    -fx-padding: 6px;
+    -fx-background-color: #FAF3E0; /* Light beige */
+    -fx-border-color: #8B7D6B; /* Grayish-brown border */
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-text-fill: #4E342E; /* Dark brown text */
+}
+
+/* Distinct Labels for Wager Sections */
+.wager-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD700; /* Gold text */
+}
+
+/* Bold Action Button with Warm Red and Subtle Shadow */
+.action-button {
+    -fx-background-color: #8B0000; /* Deep red */
+    -fx-font-size: 16px;
+    -fx-text-fill: #FAF3E0; /* Light sand text */
+    -fx-font-weight: bold;
+    -fx-padding: 8px 14px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0.4, 0, 3);
+}
+
+/* Button Hover Effect with Warm Red Highlight */
+.action-button:hover {
+    -fx-background-color: #A52A2A; /* Warmer red on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0, 3); /* Slightly increased shadow */
+}
+
+/* Information Section with Light Olive Background and Centered Text */
+.info-section {
+    -fx-font-size: 18px;
+    -fx-alignment: center;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4B3A27; /* Dark brown text */
+    -fx-pref-width: 750px;
+    -fx-pref-height: 50;
+    -fx-background-color: #D4C29E; /* Light olive beige */
+    -fx-padding: 12px;
+    -fx-background-radius: 12px;
+}
+
+/* Button Press Animation with Slight Darkening */
+.action-button:pressed {
+    -fx-background-color: #7A0000; /* Darker red */
+    -fx-translate-y: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.5, 0, 1);
+}

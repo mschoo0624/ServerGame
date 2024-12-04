@@ -29,7 +29,7 @@
 
 /* ListView styling */
 .list-view {
-    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-background-color: transparent;
     -fx-border-color: #ffd700;
     -fx-border-width: 2px;
     -fx-border-radius: 10px;
@@ -38,6 +38,11 @@
     -fx-cell-size: 40px;
     -fx-text-fill: white;
     -fx-font-size: 16px;
+}
+
+.list-view .list-cell {
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-text-fill: white;
 }
 
 /* Close Button styling */
