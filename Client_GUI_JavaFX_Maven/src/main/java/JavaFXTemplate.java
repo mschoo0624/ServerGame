@@ -21,6 +21,7 @@ import java.util.Objects;
 
 public class JavaFXTemplate extends Application {
 	static Client clientConnection;
+	static PokerInfo pokerInfo;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -40,7 +41,14 @@ public class JavaFXTemplate extends Application {
 
 		clientConnection = new Client(data->{
 			Platform.runLater(()->{
-				System.out.println("Client message: " + data);
+
+				if (data instanceof PokerInfo) {
+					pokerInfo = (PokerInfo) data;
+					System.out.println("Received game state: " + pokerInfo.getGameState());
+					// The controller will access this info through clientConnection
+				} else {
+					System.out.println("Client message: " + data);
+				}
 			});
 		});
 

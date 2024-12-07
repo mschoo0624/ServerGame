@@ -48,11 +48,11 @@
 
             <!-- Player 1 Actions -->
             <HBox spacing="45" alignment="CENTER">
-                <Button text="Deal" styleClass="action-button" fx:id="dealButton" onAction="#handleDeal1"/>
-                <Button text="Fold" styleClass="action-button" fx:id="foldButton" onAction="#handleFold1"/>
+                <Button text="Deal" styleClass="action-button" fx:id="dealButton" onAction="#handleDeal"/>
+                <Button text="Fold" styleClass="action-button" fx:id="foldButton" onAction="#handleFold"/>
                 <Button text="Bet" styleClass="action-button" fx:id="betButton" onAction="#handleSubmitBet"/>
-                <Button text="Wager" styleClass="action-button" fx:id="wagerButton" onAction="#handleWager1"/>
-                <Button text="Winning Stats" styleClass="action-button" fx:id="statsButton" onAction="#handleStats1"/>
+                <Button text="Wager" styleClass="action-button" fx:id="wagerButton" onAction="#handleWager"/>
+                <Button text="Winning Stats" styleClass="action-button" fx:id="statsButton" onAction="#handleStats"/>
             </HBox>
 
             <!-- Player 1 Stats -->

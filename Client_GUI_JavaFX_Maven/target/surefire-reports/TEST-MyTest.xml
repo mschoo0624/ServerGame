@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="MyTest" time="0.014" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="MyTest" time="0.007" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/mschoo0624/Downloads/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/test-classes:/Users/mschoo0624/Downloads/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/classes:/Users/mschoo0624/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.1/junit-jupiter-5.9.1.jar:/Users/mschoo0624/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.1/junit-jupiter-api-5.9.1.jar:/Users/mschoo0624/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/mschoo0624/.m2/repository/org/junit/platform/junit-platform-commons/1.9.1/junit-platform-commons-1.9.1.jar:/Users/mschoo0624/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/mschoo0624/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.1/junit-jupiter-params-5.9.1.jar:/Users/mschoo0624/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.1/junit-jupiter-engine-5.9.1.jar:/Users/mschoo0624/.m2/repository/org/junit/platform/junit-platform-engine/1.9.1/junit-platform-engine-1.9.1.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-controls/19.0.2.1/javafx-controls-19.0.2.1.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-controls/19.0.2.1/javafx-controls-19.0.2.1-mac-aarch64.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-graphics/19.0.2.1/javafx-graphics-19.0.2.1.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-graphics/19.0.2.1/javafx-graphics-19.0.2.1-mac-aarch64.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-base/19.0.2.1/javafx-base-19.0.2.1.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-base/19.0.2.1/javafx-base-19.0.2.1-mac-aarch64.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-fxml/19.0.2.1/javafx-fxml-19.0.2.1.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-fxml/19.0.2.1/javafx-fxml-19.0.2.1-mac-aarch64.jar:"/>
+    <property name="java.class.path" value="/Users/chisomogugu/Documents/CS342/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/test-classes:/Users/chisomogugu/Documents/CS342/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/classes:/Users/chisomogugu/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.1/junit-jupiter-5.9.1.jar:/Users/chisomogugu/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.1/junit-jupiter-api-5.9.1.jar:/Users/chisomogugu/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/chisomogugu/.m2/repository/org/junit/platform/junit-platform-commons/1.9.1/junit-platform-commons-1.9.1.jar:/Users/chisomogugu/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/chisomogugu/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.1/junit-jupiter-params-5.9.1.jar:/Users/chisomogugu/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.1/junit-jupiter-engine-5.9.1.jar:/Users/chisomogugu/.m2/repository/org/junit/platform/junit-platform-engine/1.9.1/junit-platform-engine-1.9.1.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-controls/19.0.2.1/javafx-controls-19.0.2.1.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-controls/19.0.2.1/javafx-controls-19.0.2.1-mac-aarch64.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-graphics/19.0.2.1/javafx-graphics-19.0.2.1.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-graphics/19.0.2.1/javafx-graphics-19.0.2.1-mac-aarch64.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-base/19.0.2.1/javafx-base-19.0.2.1.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-base/19.0.2.1/javafx-base-19.0.2.1-mac-aarch64.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-fxml/19.0.2.1/javafx-fxml-19.0.2.1.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-fxml/19.0.2.1/javafx-fxml-19.0.2.1-mac-aarch64.jar:"/>
     <property name="java.vm.vendor" value="Homebrew"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://github.com/Homebrew/homebrew-core/issues"/>
@@ -11,52 +11,52 @@
     <property name="java.vm.specification.version" value="23"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
-    <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/23.0.1/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/mschoo0624/Downloads/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/surefire/surefirebooter14656855157637171218.jar /Users/mschoo0624/Downloads/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/surefire 2024-12-06T21-32-59_363-jvmRun1 surefire1105592248119786003tmp surefire_02429508125667910008tmp"/>
+    <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/23/libexec/openjdk.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/chisomogugu/Documents/CS342/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/surefire/surefirebooter16891569108307445293.jar /Users/chisomogugu/Documents/CS342/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/surefire 2024-12-06T22-32-26_202-jvmRun1 surefire17989484608198761079tmp surefire_08307182090489945297tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/Users/mschoo0624/Downloads/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/test-classes:/Users/mschoo0624/Downloads/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/classes:/Users/mschoo0624/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.1/junit-jupiter-5.9.1.jar:/Users/mschoo0624/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.1/junit-jupiter-api-5.9.1.jar:/Users/mschoo0624/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/mschoo0624/.m2/repository/org/junit/platform/junit-platform-commons/1.9.1/junit-platform-commons-1.9.1.jar:/Users/mschoo0624/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/mschoo0624/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.1/junit-jupiter-params-5.9.1.jar:/Users/mschoo0624/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.1/junit-jupiter-engine-5.9.1.jar:/Users/mschoo0624/.m2/repository/org/junit/platform/junit-platform-engine/1.9.1/junit-platform-engine-1.9.1.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-controls/19.0.2.1/javafx-controls-19.0.2.1.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-controls/19.0.2.1/javafx-controls-19.0.2.1-mac-aarch64.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-graphics/19.0.2.1/javafx-graphics-19.0.2.1.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-graphics/19.0.2.1/javafx-graphics-19.0.2.1-mac-aarch64.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-base/19.0.2.1/javafx-base-19.0.2.1.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-base/19.0.2.1/javafx-base-19.0.2.1-mac-aarch64.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-fxml/19.0.2.1/javafx-fxml-19.0.2.1.jar:/Users/mschoo0624/.m2/repository/org/openjfx/javafx-fxml/19.0.2.1/javafx-fxml-19.0.2.1-mac-aarch64.jar:"/>
+    <property name="surefire.test.class.path" value="/Users/chisomogugu/Documents/CS342/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/test-classes:/Users/chisomogugu/Documents/CS342/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/classes:/Users/chisomogugu/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.1/junit-jupiter-5.9.1.jar:/Users/chisomogugu/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.1/junit-jupiter-api-5.9.1.jar:/Users/chisomogugu/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/chisomogugu/.m2/repository/org/junit/platform/junit-platform-commons/1.9.1/junit-platform-commons-1.9.1.jar:/Users/chisomogugu/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/chisomogugu/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.1/junit-jupiter-params-5.9.1.jar:/Users/chisomogugu/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.1/junit-jupiter-engine-5.9.1.jar:/Users/chisomogugu/.m2/repository/org/junit/platform/junit-platform-engine/1.9.1/junit-platform-engine-1.9.1.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-controls/19.0.2.1/javafx-controls-19.0.2.1.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-controls/19.0.2.1/javafx-controls-19.0.2.1-mac-aarch64.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-graphics/19.0.2.1/javafx-graphics-19.0.2.1.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-graphics/19.0.2.1/javafx-graphics-19.0.2.1-mac-aarch64.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-base/19.0.2.1/javafx-base-19.0.2.1.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-base/19.0.2.1/javafx-base-19.0.2.1-mac-aarch64.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-fxml/19.0.2.1/javafx-fxml-19.0.2.1.jar:/Users/chisomogugu/.m2/repository/org/openjfx/javafx-fxml/19.0.2.1/javafx-fxml-19.0.2.1-mac-aarch64.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="/Users/mschoo0624"/>
+    <property name="user.home" value="/Users/chisomogugu"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2024-10-15"/>
-    <property name="java.home" value="/opt/homebrew/Cellar/openjdk/23.0.1/libexec/openjdk.jdk/Contents/Home"/>
+    <property name="java.version.date" value="2024-09-17"/>
+    <property name="java.home" value="/opt/homebrew/Cellar/openjdk/23/libexec/openjdk.jdk/Contents/Home"/>
     <property name="file.separator" value="/"/>
-    <property name="basedir" value="/Users/mschoo0624/Downloads/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven"/>
+    <property name="basedir" value="/Users/chisomogugu/Documents/CS342/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/mschoo0624/Downloads/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/surefire/surefirebooter14656855157637171218.jar"/>
+    <property name="surefire.real.class.path" value="/Users/chisomogugu/Documents/CS342/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven/target/surefire/surefirebooter16891569108307445293.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="java.runtime.version" value="23.0.1"/>
-    <property name="user.name" value="mschoo0624"/>
+    <property name="java.runtime.version" value="23"/>
+    <property name="user.name" value="chisomogugu"/>
     <property name="stdout.encoding" value="UTF-8"/>
     <property name="path.separator" value=":"/>
-    <property name="os.version" value="15.1.1"/>
+    <property name="os.version" value="14.6"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="java.vendor.version" value="Homebrew"/>
-    <property name="localRepository" value="/Users/mschoo0624/.m2/repository"/>
+    <property name="localRepository" value="/Users/chisomogugu/.m2/repository"/>
     <property name="java.vendor.url.bug" value="https://github.com/Homebrew/homebrew-core/issues"/>
-    <property name="java.io.tmpdir" value="/var/folders/x8/w5y0hg513yx2z96nzz68q9_h0000gn/T/"/>
-    <property name="java.version" value="23.0.1"/>
-    <property name="user.dir" value="/Users/mschoo0624/Downloads/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven"/>
+    <property name="java.io.tmpdir" value="/var/folders/b2/j8769j0j1js719325d8r6hlm0000gn/T/"/>
+    <property name="java.version" value="23"/>
+    <property name="user.dir" value="/Users/chisomogugu/Documents/CS342/3CardPoker-Server-and-Client-/Client_GUI_JavaFX_Maven"/>
     <property name="os.arch" value="aarch64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="native.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/Users/mschoo0624/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.library.path" value="/Users/chisomogugu/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="UTF-8"/>
     <property name="java.vendor" value="Homebrew"/>
-    <property name="java.vm.version" value="23.0.1"/>
+    <property name="java.vm.version" value="23"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="test" classname="MyTest" time="0.008"/>
+  <testcase name="test" classname="MyTest" time="0.005"/>
 </testsuite>

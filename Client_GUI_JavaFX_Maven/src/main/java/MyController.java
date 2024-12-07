@@ -1,4 +1,5 @@
 import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
-import javafx.application.Platform;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +24,9 @@ import java.util.ResourceBundle;
 
 public class MyController implements Initializable {
     Client clientPlayer = JavaFXTemplate.clientConnection;
+//    PokerInfo info;
     private final Player player1;
+    private final Player theDealer;
     MyController gameController;
     boolean player1Decides; //player2Decides;
     boolean player1Folds; //player2Folds;
@@ -65,21 +67,20 @@ public class MyController implements Initializable {
     @FXML
     private Button backToMenuButton;
 
-    // For connecting the server.
-    @FXML
-    private TextField ipField, portField; // Fields for server IP and port
-    @FXML
-    private Button connectButton; // Button to initiate connection
-
 
     public void initialize() {
         // Load the image
         Image image = new Image(Objects.requireNonNull(getClass().getResource("/IMAGES/Rule/rule.png")).toExternalForm());
         ruleImageView.setImage(image);
+
+        // Set up game callback
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         // Load the rules image
         if (ruleImageView != null) {
             try {
@@ -93,42 +94,31 @@ public class MyController implements Initializable {
 
     //Controller constructor
     public MyController() {
+        theDealer = new Player();
         // Initialize players
         player1 = new Player();
+//        info = new PokerInfo();
     }
 
-    // Connectiong with the server.
-    @FXML
-    public void connectToServer(ActionEvent e) {
-        String ip = ipField.getText(); // Retrieve IP from the input field
-        String portText = portField.getText(); // Retrieve port from the input field
-
-        try {
-            if (ip.isEmpty() || portText.isEmpty()) {
-                throw new IllegalArgumentException("IP and Port fields cannot be empty.");
-            }
-
-            int port = Integer.parseInt(portText);
-
-            // Initialize the client connection
-            clientPlayer = new Client(info -> Platform.runLater(() -> gameInfoLabel.setText((String) info)));
-            clientPlayer.configureConnection(/*ip,*/ port); // Correctly configure IP and port
-            clientPlayer.start();
-
-            // Switch to the game screen
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/game.fxml"));
-            Parent gameRoot = fxmlLoader.load();
-            Stage stage = (Stage) connectButton.getScene().getWindow();
-            stage.setScene(new Scene(gameRoot));
-
-        } catch (NumberFormatException ex) {
-            gameInfoLabel.setText("Port must be a valid number.");
-        } catch (IllegalArgumentException ex) {
-            gameInfoLabel.setText(ex.getMessage());
-        } catch (Exception ex) {
-            gameInfoLabel.setText("Failed to connect to server: " + ex.getMessage());
-        }
-    }
+//    //Method to handle game update
+//    private void handleGameUpdate(PokerInfo info) {//FIXME
+//        // Update UI based on received game info
+//        if (info.getPlayerHand() != null) {
+//            System.out.println(info.getPlayerHand());
+//            player1.setHand(info.getPlayerHand());
+//            showCards(player1, player1Card1,player1Card2,player1Card3);//Show player card
+//        }
+//        if (info.getDealerHand() != null) {//Shows Dealer card
+//            theDealer.setHand(info.getDealerHand());
+//
+////            showCards(theDealer, player1Card1,player1Card2,player1Card3);
+//        }
+//        if (info.getMessage() != null) {
+//            gameInfoLabel.setText(info.getMessage());
+//        }
+//
+//        player1.setTotalWinnings(info.getTotalWinnings());
+//    }
 
 
     // WELCOME SCREEN METHODS
@@ -152,19 +142,23 @@ public class MyController implements Initializable {
     }
 
     //Method for Play Game button
-    public void gameButtonMethod(ActionEvent e) throws IOException {
+    public void gameButtonMethod(ActionEvent e) throws IOException {//FIXME
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/game.fxml"));
         Parent root3 = fxmlLoader.load();
         MyController controller = fxmlLoader.getController();
         gameController = controller;
-        controller.setUp();// Reinitialize the game screen setup
-        controller.clientPlayer.send("Has Started A Game");
+        try {
+            controller.setUp();// Reinitialize the game screen setup
+        }catch (Exception event){
+            System.err.println("Error: " + event.getMessage());
+        }
+        // controller.clientPlayer.send("Has Started A Game");
+//        controller.handleGameUpdate(info);
         root3.getStylesheets().add("/CSS/game.css");
 
+
+
         root.getScene().setRoot(root3);
-//        Stage stage = (Stage) root.getScene().getWindow();FIXME
-//        stage.setMinWidth(3000);
-//        stage.setMinHeight(3000);
     }
 
     //Method for Exit Button
@@ -174,7 +168,7 @@ public class MyController implements Initializable {
     }
 
     // GAME SCREEN SETUP
-    public void setUp() {
+    public void setUp() throws IOException, ClassNotFoundException {//FIXME
         // Disable all action buttons except for the bet buttons initially
         betButton.setDisable(false);
         dealButton.setDisable(true);
@@ -184,41 +178,49 @@ public class MyController implements Initializable {
         player1Decides = false;
         player1Folds = false;
         player1.resetBets();
-        player1.resetHand();;
-//        dealCards();
-        //Show players cards on screen
-        showCards(player1, player1Card1, player1Card2, player1Card3);
+        player1.resetHand();
+
+        // Send the NEW_GAME request to the server
+        PokerInfo info = new PokerInfo();
+        info.setGameState("NEW_GAME");
+        clientPlayer.send(info);
+
+        dealCards();
+
         gameInfoLabel.setText("Place your Wagers and hit the bet button start game");
     }
 
-    //MenuButton Items
+    public void handleGameUpdate(PokerInfo info) {
+        if (info.getGameState().equals("WAITING_FOR_BET")) {
+            player1.setHand(info.getPlayerHand());
+            showCards(player1, player1Card1, player1Card2, player1Card3);
+            System.out.println("Player hand size: " + player1.getHand().size());
+            printCards();
+        }
+    }
+
+            //MenuButton Items
     public void newLookMenu(ActionEvent e){
         // Clear existing stylesheets
         root3.getStylesheets().clear();
-
-        // Toggle between game.css and game1.css
         if (isGame1Style) {
             root3.getStylesheets().add("/CSS/game.css");
-            gameController.clientPlayer.send("Has Changed looks");
         } else {
             root3.getStylesheets().add("/CSS/game1.css");
-            gameController.clientPlayer.send("Has Changed looks");
         }
-
         // Update the next change
         isGame1Style = !isGame1Style;
     }
 
-    public void freshStartMenu(ActionEvent e){
+    public void freshStartMenu(ActionEvent e) throws IOException, ClassNotFoundException {//FIXME
         setUp();
-        gameController.clientPlayer.send("Has Made A Fresh Game");
     }
 
     public void exitMenu(ActionEvent e) throws IOException {
         // Load the exit screen FXML
         endGameScreen();
-    }
 
+    }
     //Closes the Screen
     public void handleConfirmExit(ActionEvent e){
         // Get the exit confirmation window
@@ -254,6 +256,12 @@ public class MyController implements Initializable {
             player1.setAnteBet(Integer.parseInt(anteBet1.getText().trim()));
             player1.setPairPlusBet(ppBet1.getText().isEmpty() ? 0 : Integer.parseInt(ppBet1.getText().trim()));
 
+            // Create and send PokerInfo
+            PokerInfo info = new PokerInfo();
+            info.setAnteBet(player1.getAnteBet());
+            info.setPairPlusBet(player1.getPairPlusBet());
+            info.setGameState("BETTING");
+            clientPlayer.send(info);
             // Enable the buttons to proceed with the game
             dealButton.setDisable(false);
             foldButton.setDisable(false);
@@ -275,26 +283,53 @@ public class MyController implements Initializable {
     }
 
     //Allows Player1 play card
-    public void handleDeal1(ActionEvent e){
-        player1.setPlayBet(player1.getAnteBet()); //Sets players bet to play bet
-        gameInfoLabel.setText("Player 1 Deals: Play wager set to " + player1.getPlayBet() + "$");
+    public void handleDeal(ActionEvent e){
+        player1.setPlayBet(player1.getAnteBet());//Set PlayWager
+
+        //Send Server Info
+        PokerInfo info = new PokerInfo();
+        info.setAnteBet(player1.getAnteBet());
+        info.setPairPlusBet(player1.getPairPlusBet());
+        info.setPlayBet(player1.getPlayBet());
+        info.setPlayerDecides(true);
+        info.setPlayerFolds(false);
+        info.setGameState("DEALT");
+        info.setPlayerHand(player1.getHand());
+        info.setDealerHand(theDealer.getHand());
+        clientPlayer.send(info);
+
+        // Update UI
+        gameInfoLabel.setText("Player 1 Deals: Play wager set to $" + player1.getPlayBet());
         dealButton.setDisable(true);
         foldButton.setDisable(true);
         player1Decides = true;
+        checkWinning();
     }
 
-    //Allows Player1 fold during game
-    public void handleFold1(ActionEvent e){
-        gameInfoLabel.setText("Player 1 Fold: Loses All Wagers ");
-        player1.resetBets();
+    //Player folds
+    public void handleFold(ActionEvent e){
+        player1.resetBets();//Reset Bets
+        //Send Server Info
+        PokerInfo info = new PokerInfo();
+        info.setPlayBet(0);
+        info.setPairPlusBet(0);
+        info.setAnteBet(0);
+        info.setPlayerDecides(true);
+        info.setPlayerFolds(true);
+        info.setGameState("FOLD");
+        clientPlayer.send(info);
+
+        // Update UI
         dealButton.setDisable(true);
         foldButton.setDisable(true);
         player1Decides = true;
         player1Folds = true;
+        gameInfoLabel.setText("Player 1 Fold: Loses All Wagers ");
+        checkWinning();
     }
 
-    //This screen shows the wagers of player 1
-    public void handleWager1(ActionEvent e) throws IOException {
+    //This screen shows the player's wagers
+    public void handleWager(ActionEvent e) throws IOException {
         // Loads player1's wager screen FXML
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/wager.fxml"));
         Parent wagerRoot = fxmlLoader.load();
@@ -318,7 +353,7 @@ public class MyController implements Initializable {
         stage.close();
     }
 
-    public void handleStats1(ActionEvent e) throws IOException {
+    public void handleStats(ActionEvent e) throws IOException {
         // Loads player1's wager screen FXML
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/win.fxml"));
         Parent winRoot = fxmlLoader.load();
@@ -345,25 +380,77 @@ public class MyController implements Initializable {
         }
     }
 
-    //Helper to check if player should continue game
-    private void continueGame(){
-        text = "DEAL OR FOLD";
-        setGameInfoLabelDelay(text, 3);
+    private void checkWinning(){
+        showCards(theDealer, dealerCard1, dealerCard2, dealerCard3);
+        Platform.runLater(()-> {
+            PokerInfo info2 = clientPlayer.getPokerInfo();
+            switch(info2.getMessage()) {
+                case "Dealer not qualified":
+                    dealerNotQualified();
+                    break;
+                case "Dealer wins":
+                    try {
+                        dealerWins();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case "Player Wins":
+                    try {
+                        playerWins(info2);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case "Tie":
+                    try {
+                        tie();
+                    } catch (IOException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case "Folds":
+                    try {
+                        endGameScreen();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+            }
 
-        //Push Player1 to the next hand
-        if(!player1Folds){
-            player1Decides = false;
-            dealButton.setDisable(false);
-            foldButton.setDisable(false);
-            //Show players cards on screen
-            showCards(player1, player1Card1, player1Card2, player1Card3);
-        }
+        });
 
-        if (!player1Folds){
-            player1Decides = false;
-        }
     }
+    private void dealerWins() throws IOException {
+        player1.resetBets();
+        gameInfoLabel.setText("Dealer Win!!");
+        setGameInfoLabelDelay("Game End!", 3);
+        setGameInfoLabelDelay("Click 'Fresh Start' in the menu to begin a new game", 7);
+        endGameScreen();
+    }
+    private void dealerNotQualified(){
+        text = "Dealer does not have at least Queen high; ante wager is pushed";
+        setGameInfoLabelDelay(text, 1);
+        PauseTransition pause = new PauseTransition(Duration.seconds(4));//4 sec delay
+        pause.setOnFinished(event -> {
+            continueGame();
+        });
+        pause.play();
+    }
+    private void playerWins(PokerInfo info) throws IOException {
+        player1.setAnteBet(info.getAnteBet());
+        player1.setPairPlusBet(info.getPairPlusBet());
+        player1.setPlayBet(info.getPlayBet());
+        player1.setTotalWinnings(info.getTotalWinnings());
+        gameInfoLabel.setText("Player Wins $" + player1.getTotalWinnings());
+        setGameInfoLabelDelay("Game End!", 3);
+        setGameInfoLabelDelay("Click 'Fresh Start' in the menu to begin a new game", 7);
+        endGameScreen();
 
+    }
+    private void tie() throws IOException, ClassNotFoundException {
+        text = "Player Ties with Dealer";
+        setUp();
+    }
     //Helper to pause between game info change
     private void setGameInfoLabelDelay(String newText, double delaySeconds) {
         PauseTransition pause = new PauseTransition(Duration.seconds(delaySeconds));
@@ -388,6 +475,13 @@ public class MyController implements Initializable {
         }
     }
 
+    private void hideDealerCard(Player player, ImageView... cardViews){
+        for (int i = 0; i < player.getHand().size(); i++) {
+            String path= "/IMAGES/cards/BACK.png";
+            cardViews[i].setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(path))));
+        }
+    }
+
     //Method get the close screen
     private void endGameScreen() throws IOException {
         // Load the exit screen FXML
@@ -401,9 +495,29 @@ public class MyController implements Initializable {
         endStage.show();
     }
 
+    private void dealCards() {
+        Platform.runLater(()-> {
+            PokerInfo info2 = clientPlayer.getPokerInfo();
+            player1.setHand(info2.getPlayerHand());
+            showCards(player1, player1Card1,player1Card2,player1Card3);
+
+            theDealer.setHand(info2.getDealerHand());
+            hideDealerCard(theDealer, dealerCard1, dealerCard2, dealerCard3);
+
+        });
+    }
+    //Helper to check if player should continue game
+    private void continueGame(){
+        hideDealerCard(theDealer, dealerCard1, dealerCard2, dealerCard3);
+        dealCards();
+        dealButton.setDisable(false);
+        foldButton.setDisable(false);
+    }
+
 //    //Helper Function to determine each player and the dealer's hand
     private void printCards(){
-        System.out.println("Player 1");
+        //Player1
+        System.out.println("Player  1");
         for (Card card : player1.getHand()) {
             System.out.println(card.getSuit() + ":" +card.getValue());
         }
