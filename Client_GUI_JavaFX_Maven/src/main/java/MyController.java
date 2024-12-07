@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
+import javafx.application.Platform;
 
 import java.io.IOException;
 import java.net.URL;
@@ -64,6 +65,12 @@ public class MyController implements Initializable {
     @FXML
     private Button backToMenuButton;
 
+    // For connecting the server.
+    @FXML
+    private TextField ipField, portField; // Fields for server IP and port
+    @FXML
+    private Button connectButton; // Button to initiate connection
+
 
     public void initialize() {
         // Load the image
@@ -89,6 +96,40 @@ public class MyController implements Initializable {
         // Initialize players
         player1 = new Player();
     }
+
+    // Connectiong with the server.
+    @FXML
+    public void connectToServer(ActionEvent e) {
+        String ip = ipField.getText(); // Retrieve IP from the input field
+        String portText = portField.getText(); // Retrieve port from the input field
+
+        try {
+            if (ip.isEmpty() || portText.isEmpty()) {
+                throw new IllegalArgumentException("IP and Port fields cannot be empty.");
+            }
+
+            int port = Integer.parseInt(portText);
+
+            // Initialize the client connection
+            clientPlayer = new Client(info -> Platform.runLater(() -> gameInfoLabel.setText((String) info)));
+            clientPlayer.configureConnection(/*ip,*/ port); // Correctly configure IP and port
+            clientPlayer.start();
+
+            // Switch to the game screen
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/game.fxml"));
+            Parent gameRoot = fxmlLoader.load();
+            Stage stage = (Stage) connectButton.getScene().getWindow();
+            stage.setScene(new Scene(gameRoot));
+
+        } catch (NumberFormatException ex) {
+            gameInfoLabel.setText("Port must be a valid number.");
+        } catch (IllegalArgumentException ex) {
+            gameInfoLabel.setText(ex.getMessage());
+        } catch (Exception ex) {
+            gameInfoLabel.setText("Failed to connect to server: " + ex.getMessage());
+        }
+    }
+
 
     // WELCOME SCREEN METHODS
     public void rulesButtonMethod(ActionEvent e) throws IOException {
@@ -124,7 +165,6 @@ public class MyController implements Initializable {
 //        Stage stage = (Stage) root.getScene().getWindow();FIXME
 //        stage.setMinWidth(3000);
 //        stage.setMinHeight(3000);
-
     }
 
     //Method for Exit Button
@@ -170,7 +210,6 @@ public class MyController implements Initializable {
     }
 
     public void freshStartMenu(ActionEvent e){
-
         setUp();
         gameController.clientPlayer.send("Has Made A Fresh Game");
     }
@@ -178,8 +217,8 @@ public class MyController implements Initializable {
     public void exitMenu(ActionEvent e) throws IOException {
         // Load the exit screen FXML
         endGameScreen();
-
     }
+
     //Closes the Screen
     public void handleConfirmExit(ActionEvent e){
         // Get the exit confirmation window
@@ -308,8 +347,6 @@ public class MyController implements Initializable {
 
     //Helper to check if player should continue game
     private void continueGame(){
-
-//        dealCards();//Deal new hands
         text = "DEAL OR FOLD";
         setGameInfoLabelDelay(text, 3);
 
@@ -366,8 +403,7 @@ public class MyController implements Initializable {
 
 //    //Helper Function to determine each player and the dealer's hand
     private void printCards(){
-        //Player1
-        System.out.println("Player  1");
+        System.out.println("Player 1");
         for (Card card : player1.getHand()) {
             System.out.println(card.getSuit() + ":" +card.getValue());
         }
