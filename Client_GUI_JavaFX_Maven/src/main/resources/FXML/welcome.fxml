@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button.*?>
+<?import javafx.scene.control.Label.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
-<VBox alignment="CENTER" spacing="20" styleClass="vbox" fx:id="root" fx:controller="MyController"
-      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" prefHeight="600" prefWidth="600"
-      stylesheets="@welcome.css">
+<VBox alignment="CENTER" spacing="50" styleClass="vbox" fx:id="root" fx:controller="MyController"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" prefHeight="400" prefWidth="600">
 
     <!-- Welcome Message -->
-    <Label text="Welcome to 3 Card Poker!" styleClass="welcome-title"/>
+    <Label text="Welcome to 3 Card Poker!" styleClass="Label"/>
 
     <!-- Image Section -->
     <ImageView fitWidth="500" fitHeight="300">
         <Image url="@/IMAGES/design/front.png" />
     </ImageView>
 
-    <!-- Server Connection Section -->
+    <!-- Connection Settings -->
     <VBox spacing="10" alignment="CENTER">
-        <!-- Port Input Field -->
-        <TextField fx:id="portField" promptText="Enter Port Number" styleClass="custom-text-field"/>
-
-        <!-- Connect Button -->
-        <Button fx:id="connectButton" text="Start Server" onAction="#connectToServer" styleClass="custom-button"/>
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="IP Address:" />
+            <TextField fx:id="ipAddressField" promptText="Enter IP address"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="Port:" />
+            <TextField fx:id="portField" promptText="Enter port number"/>
+        </HBox>
     </VBox>
 
     <!-- Buttons -->
     <VBox spacing="20" alignment="CENTER">
-        <Button fx:id="rulesButton" text="Rules" onAction="#rulesButtonMethod" styleClass="secondary-button"/>
-        <Button fx:id="exitButton" text="Exit" onAction="#exitButtonMethod" styleClass="secondary-button"/>
+        <Button fx:id="rulesButton" text="Rules" onAction="#rulesButtonMethod"/>
+        <Button fx:id="gameButton" text="Play Game" onAction="#gameButtonMethod"/>
+        <Button fx:id="exitButton" text="Exit" onAction="#exitButtonMethod"/>
     </VBox>
 
 </VBox>

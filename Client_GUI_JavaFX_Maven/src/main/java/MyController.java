@@ -420,6 +420,7 @@ public class MyController implements Initializable {
         });
 
     }
+
     private void dealerWins() throws IOException {
         player1.resetBets();
         gameInfoLabel.setText("Dealer Win!!");
