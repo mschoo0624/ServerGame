@@ -1,0 +1,64 @@
+/* Root pane styling */
+#root2 {
+    -fx-background-color: #006400 ; /* Dodger blue background */
+    -fx-padding: 20px;
+    -fx-font: 16px "Georgia", serif;
+    -fx-background-radius: 12px;
+    -fx-spacing: 15px;
+    -fx-alignment: center; /* Center-align elements within VBox */
+}
+
+/* Title Label styling */
+#ruleTitleLabel {
+    -fx-font-size: 28px;
+    -fx-text-fill: #FFFFFF; /* White text */
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 4, 0.3, 0, 1);
+    -fx-padding: 0 0 10px 0; /* Space below title */
+    -fx-alignment: center; /* Center-align text */
+}
+
+/* Rule text styling */
+#ruleText {
+    -fx-font-size: 18px;
+    -fx-text-fill: #FFFFFF; /* White text for high contrast */
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-line-spacing: 5px;
+    -fx-padding: 15px;
+    -fx-background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent dark background */
+    -fx-background-radius: 8px;
+    -fx-border-color: #FFFFFF; /* White border for better distinction */
+    -fx-border-width: 1px;
+}
+
+/* Navigation button styling */
+#backToMenuButton {
+    -fx-background-color: #4682B4; /* Steel blue */
+    -fx-text-fill: #FFFFFF; /* White text */
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0.3, 0, 1);
+    -fx-border-color: #1E90FF; /* Dodger blue border */
+    -fx-border-width: 1px;
+}
+
+/* Hover effect for the navigation button */
+#backToMenuButton:hover {
+    -fx-background-color: #5A9BD5; /* Lighter blue for hover */
+}
+
+/* Pressed effect for the navigation button */
+#backToMenuButton:pressed {
+    -fx-background-color: #4169E1; /* Royal blue when pressed */
+    -fx-translate-y: 2px;
+}
+
+/* Additional styling for focus states */
+#backToMenuButton:focused {
+    -fx-border-color: #F0F8FF; /* White border on focus */
+    -fx-border-width: 2px;
+}
